@@ -88,7 +88,7 @@ public class Field {
     }
 
 	public void sleep() throws InterruptedException {
-		int delay = 200;
+		int delay = 300;
 		
 		Thread.sleep(delay);
 		
