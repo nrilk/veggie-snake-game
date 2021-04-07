@@ -18,7 +18,7 @@ public class Field {
     }
     
     public static void main(String[] args) throws InterruptedException {
-        game = new Field(20, 20, new VeggieSnake(10, 10));
+        game = new Field(25, 25, new VeggieSnake(10, 10));
         game.veggieSnake.setDirection(SnakeDirection.RIGHT);
         game.createSoybean();
         game.run();
@@ -29,25 +29,29 @@ public class Field {
         KeyboardObserver keyboardObserver = new KeyboardObserver();
         keyboardObserver.start();
 
-        while (veggieSnake.isAlive()) {
-            if (keyboardObserver.hasKeyEvents()) {
-                KeyEvent event = keyboardObserver.getEventFromTop();
-                //press 'q' to exit the game
-                if (event.getKeyChar() == 'q') return;
-                if (event.getKeyCode() == KeyEvent.VK_LEFT)
-                    veggieSnake.setDirection(SnakeDirection.LEFT);               
-                else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
-                    veggieSnake.setDirection(SnakeDirection.RIGHT);                 
-                else if (event.getKeyCode() == KeyEvent.VK_UP)
-                    veggieSnake.setDirection(SnakeDirection.UP);                
-                else if (event.getKeyCode() == KeyEvent.VK_DOWN)
-                    veggieSnake.setDirection(SnakeDirection.DOWN);
-            }
-            veggieSnake.move();
-            print();
-            sleep();
+        try {
+	        while (veggieSnake.isAlive()) {
+	            if (keyboardObserver.hasKeyEvents()) {
+	                KeyEvent event = keyboardObserver.getEventFromTop();
+	                //press 'q' to exit the game
+	                if (event.getKeyChar() == 'q') return;
+	                if (event.getKeyCode() == KeyEvent.VK_LEFT)
+	                    veggieSnake.setDirection(SnakeDirection.LEFT);               
+	                else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
+	                    veggieSnake.setDirection(SnakeDirection.RIGHT);                 
+	                else if (event.getKeyCode() == KeyEvent.VK_UP)
+	                    veggieSnake.setDirection(SnakeDirection.UP);                
+	                else if (event.getKeyCode() == KeyEvent.VK_DOWN)
+	                    veggieSnake.setDirection(SnakeDirection.DOWN);
+	            }
+	            veggieSnake.move();
+	            print();
+	            sleep();
+	        }
+        } catch (ArrayIndexOutOfBoundsException e) {
+        	System.out.println("GAME OVER!");
         }
-        System.out.println("GAME OVER!");
+        
     }
 
     public void print() {
@@ -88,18 +92,18 @@ public class Field {
     }
 
 	public void sleep() throws InterruptedException {
-		int delay = 300;
+		int delay = 150;
 		
 		Thread.sleep(delay);
 		
-		if(veggieSnake.getSections().size() <= 15) {
-			for(int i = 1; i <= 15; i++) {
-				delay -= 10;
-				Thread.sleep(delay);
-			}
-		} else {
-			Thread.sleep(100);
-		}
+//		if(veggieSnake.getSections().size() <= 15) {
+//			for(int i = 1; i <= 15; i++) {
+//				delay -= 10;
+//				Thread.sleep(delay);
+//			}
+//		} else {
+//			Thread.sleep(100);
+//		}
 	}
 	
     public Soybean getSoybean() {
