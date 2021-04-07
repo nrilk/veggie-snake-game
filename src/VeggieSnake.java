@@ -12,6 +12,8 @@ public class VeggieSnake {
 		 sections = new ArrayList<>();
 		 SnakeSection head = new SnakeSection(x, y);
 		 sections.add(head);
+		 sections.add(new SnakeSection(x - 1, y));
+		 sections.add(new SnakeSection(x - 2, y));
 	 }
 	 
 	 public void move() {
@@ -39,7 +41,7 @@ public class VeggieSnake {
 				 sections.add(0, new_section);
 			 } else {
 				 sections.add(0, new_section);
-				 sections.remove(sections.size()-1);
+				 sections.remove(sections.size() - 1);
 			 }
 	 }
 	 

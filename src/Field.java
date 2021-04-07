@@ -95,7 +95,8 @@ public class Field {
 		int delay = 150;
 		
 		Thread.sleep(delay);
-		
+
+// to increase speed of the snake at every turn		
 //		if(veggieSnake.getSections().size() <= 15) {
 //			for(int i = 1; i <= 15; i++) {
 //				delay -= 10;
